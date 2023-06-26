@@ -1,5 +1,5 @@
 import { IBooking } from "../models/bookingsModel";
-import { Request, Response, NextFunction } from "express";
+import { Request, Response } from "express";
 
 export const getBookings = function (req: Request, res: Response) {
   const bookings: IBooking[] = [
