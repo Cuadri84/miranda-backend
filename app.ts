@@ -4,7 +4,7 @@ import express, { Request, Response } from "express";
 import dashboardRouter from "./routes/dashboardRouter";
 import bookingsRouter from "./routes/bookingsRouter";
 import roomsRouter from "./routes/roomsRouter";
-// import usersRouter from "./routes/usersRouter";
+import usersRouter from "./routes/usersRouter";
 // import contactRouter from "./routes/contactRouter";
 // import authRouter from "./routes/authRouter";
 
@@ -14,7 +14,7 @@ const PORT = 3000;
 app.use("/", dashboardRouter);
 app.use("/bookings", bookingsRouter);
 app.use("/rooms", roomsRouter);
-// app.use("/users", usersRouter);
+app.use("/users", usersRouter);
 // app.use("/contacts", contactRouter);
 // app.use("/login", authRouter);
 

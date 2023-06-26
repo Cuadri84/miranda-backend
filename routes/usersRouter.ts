@@ -1,20 +1,27 @@
 import express from "express";
+import {
+  getUsers,
+  getUser,
+  postUser,
+  putUser,
+  deleteUser,
+} from "../controllers/usersController";
 
 const usersRouter = express.Router();
 
-// GET rooms (Read method)
-usersRouter.get("/", getRooms);
+// GET users (Read method)
+usersRouter.get("/", getUsers);
 
-// GET single room (Read method)
-usersRouter.get("/:roomId", getRoom);
+// GET single user (Read method)
+usersRouter.get("/:id", getUser);
 
-// POST a new room (Create method)
-usersRouter.post("/newRoom", postRoom);
+// POST a new user (Create method)
+usersRouter.post("/newUser", postUser);
 
-// PUT a room (Update method)
-usersRouter.put("/editRoom/:roomId", putRoom);
+// PUT a user (Update method)
+usersRouter.put("/editUser/:id", putUser);
 
-// DELETE single room (Delete method)
-usersRouter.delete("/:roomId", deleteRoom);
+// DELETE single user (Delete method)
+usersRouter.delete("/:id", deleteUser);
 
 export default usersRouter;
