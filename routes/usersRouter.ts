@@ -16,10 +16,10 @@ usersRouter.get("/", getUsers);
 usersRouter.get("/:id", getUser);
 
 // POST a new user (Create method)
-usersRouter.post("/newUser", postUser);
+usersRouter.post("/", postUser);
 
 // PUT a user (Update method)
-usersRouter.put("/editUser/:id", putUser);
+usersRouter.put("/:id", putUser);
 
 // DELETE single user (Delete method)
 usersRouter.delete("/:id", deleteUser);

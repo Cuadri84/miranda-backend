@@ -13,15 +13,15 @@ const bookingsRouter = express.Router();
 bookingsRouter.get("/", getBookings);
 
 // GET single booking (Read method)
-bookingsRouter.get("/:bookingId", getBooking);
+bookingsRouter.get("/:id", getBooking);
 
 // POST a new booking (Create method)
-bookingsRouter.post("/newBooking", postBooking);
+bookingsRouter.post("/", postBooking);
 
 // PUT a booking (Update method)
-bookingsRouter.put("/editBooking/:bookingId", putBooking);
+bookingsRouter.put("/:id", putBooking);
 
 // DELETE single booking (Delete method)
-bookingsRouter.delete("/:bookingId", deleteBooking);
+bookingsRouter.delete("/:id", deleteBooking);
 
 export default bookingsRouter;

@@ -47,8 +47,8 @@ export const getRooms = function (req: Request, res: Response) {
   res.status(200).json(bookings);
 };
 
-export const getRoom = function (req: Request<{ id: number }>, res: Response) {
-  const id = Number(req.params.id);
+export const getRoom = function (req: Request, res: Response) {
+  const { id } = req.params;
   console.log(id);
   const singleRoom: string = `Made it to the single booking with room_number ${id}`;
   res.status(200).json(singleRoom);

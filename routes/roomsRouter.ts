@@ -13,15 +13,15 @@ const roomsRouter = express.Router();
 roomsRouter.get("/", getRooms);
 
 // GET single room (Read method)
-roomsRouter.get("/:roomId", getRoom);
+roomsRouter.get("/:id", getRoom);
 
 // POST a new room (Create method)
-roomsRouter.post("/newRoom", postRoom);
+roomsRouter.post("/", postRoom);
 
 // PUT a room (Update method)
-roomsRouter.put("/editRoom/:roomId", putRoom);
+roomsRouter.put("/:id", putRoom);
 
 // DELETE single room (Delete method)
-roomsRouter.delete("/:roomId", deleteRoom);
+roomsRouter.delete("/:id", deleteRoom);
 
 export default roomsRouter;
