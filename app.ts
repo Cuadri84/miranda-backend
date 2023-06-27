@@ -1,13 +1,14 @@
-import express, { Request, Response, Express } from "express";
+import express, { Express } from "express";
 
 //Router imports
-import dashboardRouter from "./routes/dashboardRouter";
+import { verifyToken } from "./controllers/authController";
+import authRouter from "./routes/authRouter";
 import bookingsRouter from "./routes/bookingsRouter";
+import contactRouter from "./routes/contactRouter";
+import dashboardRouter from "./routes/dashboardRouter";
+import infoRouter from "./routes/infoRouter";
 import roomsRouter from "./routes/roomsRouter";
 import usersRouter from "./routes/usersRouter";
-import contactRouter from "./routes/contactRouter";
-import authRouter from "./routes/authRouter";
-import { verifyToken } from "./controllers/authController";
 
 const app: Express = express();
 const PORT = 3000;
@@ -17,7 +18,7 @@ app.use(express.json());
 
 //public routes
 app.use("/login", authRouter);
-// app.use("/info") este devolver objeto con la descripcion de los endpoints
+app.use("/info", infoRouter);
 
 //private routes
 app.use("/", verifyToken, dashboardRouter);
