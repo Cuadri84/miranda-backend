@@ -1,4 +1,4 @@
-import express, { Request, Response } from "express";
+import express, { Request, Response, Express } from "express";
 
 //Router imports
 import dashboardRouter from "./routes/dashboardRouter";
@@ -8,8 +8,11 @@ import usersRouter from "./routes/usersRouter";
 import contactRouter from "./routes/contactRouter";
 // import authRouter from "./routes/authRouter";
 
-const app = express();
+const app: Express = express();
 const PORT = 3000;
+
+// Middleware para analizar el cuerpo de la solicitud como JSON
+app.use(express.json());
 
 app.use("/", dashboardRouter);
 app.use("/bookings", bookingsRouter);
