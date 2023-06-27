@@ -1,7 +1,10 @@
 import express from "express";
-import { postLogin } from "../controllers/authController";
+import { postLogin, getLogin } from "../controllers/authController";
 
 const authRouter = express.Router();
+
+// GET bookings (Read method)
+authRouter.get("/", getLogin);
 
 authRouter.post("/", postLogin);
 

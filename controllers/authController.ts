@@ -3,15 +3,15 @@ import jwt from "jsonwebtoken";
 import { IAuthUser } from "../models/authModel";
 import dotenv from "dotenv";
 
-// get config vars
 dotenv.config();
 const secretToken = process.env.TOKEN_SECRET || "secret";
 
+//function that creates the token
 function generateAccessToken(user: any) {
   return jwt.sign(user, secretToken as string, { expiresIn: "30m" });
 }
 
-//Authoritation: Bearer <token>
+//Function to verify the token
 export function verifyToken(req: any, res: Response, next: NextFunction) {
   const bearerHeader = req.headers["authorization"];
   console.log(bearerHeader);
@@ -25,6 +25,10 @@ export function verifyToken(req: any, res: Response, next: NextFunction) {
     res.sendStatus(403);
   }
 }
+
+export const getLogin = function (req: Request, res: Response) {
+  res.send("Login");
+};
 
 export const postLogin = function (req: Request, res: Response) {
   const user: IAuthUser[] = [{ name: "david", mail: "mail" }];
