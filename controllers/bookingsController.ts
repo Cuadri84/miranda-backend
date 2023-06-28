@@ -1,36 +1,9 @@
 import { IBooking } from "../models/bookingsModel";
 import { Request, Response } from "express";
+import bookingsData from "../data/bookings.json";
 
 export const getBookings = function (req: Request, res: Response) {
-  const bookings: IBooking[] = [
-    {
-      id: 1,
-      bookingID: 135478,
-      userName: "Pedro Ruiz",
-      userPicture:
-        "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=774&q=80",
-      orderDate: "12/06/2022, 10:00:00",
-      checkIn: "2022-11-04",
-      checkOut: "2022-12-01",
-      specialRequest: "",
-      roomType: "Single Bed",
-      status: "Check Out",
-    },
-    {
-      id: 2,
-      bookingID: 3460,
-      userName: "Nadia Mera",
-      userPicture:
-        "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=774&q=80",
-      orderDate: "12/10/2022, 10:00:00",
-      checkIn: "2022-11-04",
-      checkOut: "2022-12-01",
-      specialRequest: "",
-      roomType: "Suite",
-      status: "In Progress",
-    },
-  ];
-  res.status(200).json(bookings);
+  res.status(200).json(bookingsData);
 };
 
 export const getBooking = function (req: Request, res: Response) {

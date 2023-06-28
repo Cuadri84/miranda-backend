@@ -1,50 +1,9 @@
 import { IRooms } from "../models/roomsModel";
 import { Request, Response } from "express";
+import roomsData from "../data/rooms.json";
 
 export const getRooms = function (req: Request, res: Response) {
-  const bookings: IRooms[] = [
-    {
-      id: "Suite",
-      room_number: 1,
-
-      photo:
-        "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=774&q=80",
-      photoTwo: "",
-      photoThree: "",
-      photoFour: "",
-      photoFive: "",
-      description: "nice room",
-      discountPercent: 5,
-      discount: 10,
-      cancellationPolicy: "",
-      bed_type: "big",
-      room_facilities: ["wifi", "minibar"],
-      room_rate: 5,
-      room_offer: 5,
-      room_status: "booked",
-    },
-    {
-      id: "normal",
-      room_number: 2,
-
-      photo:
-        "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=774&q=80",
-      photoTwo: "",
-      photoThree: "",
-      photoFour: "",
-      photoFive: "",
-      description: "single room",
-      discountPercent: 5,
-      discount: 10,
-      cancellationPolicy: "",
-      bed_type: "small",
-      room_facilities: ["wifi", "minibar"],
-      room_rate: 5,
-      room_offer: 5,
-      room_status: "free",
-    },
-  ];
-  res.status(200).json(bookings);
+  res.status(200).json(roomsData);
 };
 
 export const getRoom = function (req: Request, res: Response) {
