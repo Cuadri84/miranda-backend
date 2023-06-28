@@ -4,8 +4,8 @@ export interface IUser {
   name: string;
   position: string;
   email: string;
-  phone: number;
-  date: number;
+  phone: string;
+  date: string;
   description: string;
   state: string;
 }

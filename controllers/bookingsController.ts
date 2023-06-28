@@ -6,10 +6,17 @@ export const getBookings = function (req: Request, res: Response) {
   res.status(200).json(bookingsData);
 };
 
-export const getBooking = function (req: Request, res: Response) {
+export const getBooking = function (
+  req: Request<{ id: number }>,
+  res: Response
+) {
   const { id } = req.params;
-  console.log(id);
-  const singleBooking: string = `Made it to the single booking with ID ${id}`;
+  const singleBooking: IBooking | undefined = bookingsData.find(
+    (booking: IBooking) => booking.id === Number(id)
+  );
+  if (singleBooking === undefined) {
+    res.sendStatus(404);
+  }
   res.status(200).json(singleBooking);
 };
 

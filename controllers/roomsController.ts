@@ -6,10 +6,14 @@ export const getRooms = function (req: Request, res: Response) {
   res.status(200).json(roomsData);
 };
 
-export const getRoom = function (req: Request, res: Response) {
+export const getRoom = function (req: Request<{ id: number }>, res: Response) {
   const { id } = req.params;
-  console.log(id);
-  const singleRoom: string = `Made it to the single booking with room_number ${id}`;
+  const singleRoom: IRooms | undefined = roomsData.find(
+    (room: IRooms) => room.room_number === Number(id)
+  );
+  if (singleRoom === undefined) {
+    res.sendStatus(404);
+  }
   res.status(200).json(singleRoom);
 };
 

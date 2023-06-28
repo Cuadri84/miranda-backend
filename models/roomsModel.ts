@@ -7,12 +7,12 @@ export interface IRooms {
   photoFour: string;
   photoFive: string;
   description: string;
-  discountPercent: number;
-  discount: number;
+  discountPercent: string;
+  discount: string;
   cancellationPolicy: string;
   bed_type: string;
   room_facilities: string[];
   room_rate: number;
-  room_offer: number;
+  room_offer: string | number;
   room_status: string;
 }

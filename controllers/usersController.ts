@@ -6,10 +6,14 @@ export const getUsers = function (req: Request, res: Response) {
   res.status(200).json(usersData);
 };
 
-export const getUser = function (req: Request, res: Response) {
+export const getUser = function (req: Request<{ id: number }>, res: Response) {
   const { id } = req.params;
-  console.log(id);
-  const singleUser: string = `Made it to the single booking with ID ${id}`;
+  const singleUser: IUser | undefined = usersData.find(
+    (user: IUser) => user.id === Number(id)
+  );
+  if (singleUser === undefined) {
+    res.sendStatus(404);
+  }
   res.status(200).json(singleUser);
 };
 
