@@ -1,6 +1,5 @@
 import express from "express";
 import { postLogin, getLogin } from "../controllers/authController";
-import bodyParser from "body-parser";
 
 const authRouter = express.Router();
 
@@ -8,6 +7,6 @@ const authRouter = express.Router();
 authRouter.get("/", getLogin);
 
 // Post Login (Create method)
-authRouter.post("/", bodyParser.json(), postLogin);
+authRouter.post("/", postLogin);
 
 export default authRouter;
