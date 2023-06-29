@@ -1,22 +1,23 @@
 import dotenv from "dotenv";
 import jwt from "jsonwebtoken";
 import { NextFunction, Request, Response } from "express";
+import { ILogin } from "../models/loginModel";
 
 dotenv.config();
 const secretToken = process.env.TOKEN_SECRET || "secret";
 
-//Function that creates the token
-export function generateAccessToken(user: any) {
-  return jwt.sign(user, secretToken as string, { expiresIn: "30m" });
-}
+export const isUserAuthenticated = (user: ILogin) => {
+  if (user.name === "david" && user.mail === "mail" && user.pass === "d") {
+    return true;
+  } else {
+    return false;
+  }
+};
 
-const defaultUser = [
-  {
-    name: "david",
-    mail: "mail",
-    pass: "d",
-  },
-];
+//Function that creates the token
+export function generateAccessToken(user: ILogin) {
+  return jwt.sign(user.name, secretToken as string);
+}
 
 //Function to verify the token
 export function verifyToken(req: any, res: Response, next: NextFunction) {
@@ -25,11 +26,6 @@ export function verifyToken(req: any, res: Response, next: NextFunction) {
   if (typeof bearerHeader !== "undefined") {
     const bearerToken = bearerHeader.split(" ")[1];
     const result = jwt.verify(bearerToken, secretToken);
-    console.log(result);
-    // const array = Object.entries(result);
-    // console.log(array[0]);
-
-    //hacer el try catch
     req.token = bearerToken;
     next();
   } else {
