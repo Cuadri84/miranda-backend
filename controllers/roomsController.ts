@@ -24,10 +24,25 @@ export const postRoom = function (req: Request, res: Response) {
   res.status(200).json(roomsData);
 };
 
-export const putRoom = function (req: Request, res: Response) {
+export const putRoom = function (
+  req: Request<{ body: IRooms; id: any }>,
+  res: Response
+) {
   const { id } = req.params;
-  const singleRoom: string = `Editing the booking with room_number ${id}`;
-  res.status(200).json(singleRoom);
+  const { body } = req;
+
+  const existingRoom: IRooms | undefined = roomsData.find(
+    (rooms: IRooms) => rooms.room_number === Number(id)
+  );
+  if (!existingRoom) {
+    res.status(404).json("Booking not found");
+  } else {
+    let roomUpdated = roomsData.map((room) =>
+      room.room_number === Number(id) ? body : room
+    );
+    saveToDataBase(roomUpdated, "rooms.json");
+    res.status(200).json(roomUpdated);
+  }
 };
 
 export const deleteRoom = function (req: Request, res: Response) {

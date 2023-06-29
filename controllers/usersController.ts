@@ -24,10 +24,25 @@ export const postUser = function (req: Request, res: Response) {
   res.status(200).json(usersData);
 };
 
-export const putUser = function (req: Request, res: Response) {
+export const putUser = function (
+  req: Request<{ body: IUser; id: any }>,
+  res: Response
+) {
   const { id } = req.params;
-  const singleUser: string = `Editing the user with ID ${id}`;
-  res.status(200).json(singleUser);
+  const { body } = req;
+
+  const existingUser: IUser | undefined = usersData.find(
+    (user: IUser) => user.id === Number(id)
+  );
+  if (!existingUser) {
+    res.status(404).json("Booking not found");
+  } else {
+    let userUpdated = usersData.map((user) =>
+      user.id === Number(id) ? body : user
+    );
+    saveToDataBase(userUpdated, "users.json");
+    res.status(200).json(userUpdated);
+  }
 };
 
 export const deleteUser = function (req: Request, res: Response) {

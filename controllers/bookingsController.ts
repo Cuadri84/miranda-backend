@@ -27,10 +27,25 @@ export const postBooking = function (req: Request, res: Response) {
   res.status(200).json(bookingsData);
 };
 
-export const putBooking = function (req: Request, res: Response) {
+export const putBooking = function (
+  req: Request<{ body: IBooking; id: any }>,
+  res: Response
+) {
   const { id } = req.params;
-  const singleBooking: string = `Editing the booking with ID ${id}`;
-  res.status(200).json(singleBooking);
+  const { body } = req;
+
+  const existingBooking: IBooking | undefined = bookingsData.find(
+    (booking: IBooking) => booking.id === Number(id)
+  );
+  if (!existingBooking) {
+    res.status(404).json("Booking not found");
+  } else {
+    let bookingUpdated = bookingsData.map((booking) =>
+      booking.id === Number(id) ? body : booking
+    );
+    saveToDataBase(bookingUpdated, "bookings.json");
+    res.status(200).json(bookingUpdated);
+  }
 };
 
 export const deleteBooking = function (req: Request, res: Response) {
