@@ -35,9 +35,9 @@ export const putBooking = function (req: Request, res: Response) {
 
 export const deleteBooking = function (req: Request, res: Response) {
   const { id } = req.params;
-  let deletedBooking = bookingsData.filter(
-    (booking: IBooking) => booking.id !== Number(id)
+  let newBookingsDataFiltered = bookingsData.filter(
+    (booking: IBooking) => booking.id != Number(id)
   );
-  saveToDataBase(deletedBooking, "bookings.json");
-  res.status(200).json(bookingsData);
+  saveToDataBase(newBookingsDataFiltered, "bookings.json");
+  res.status(200).json(newBookingsDataFiltered);
 };

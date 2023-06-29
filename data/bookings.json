@@ -1,16 +1,5 @@
 [
   {
-    "id": 1,
-    "bookingID": 135478,
-    "userName": "Roger Waters",
-    "orderDate": "12/06/2022, 10:00:00",
-    "checkIn": "2022-11-04",
-    "checkOut": "2022-12-01",
-    "specialRequest": "",
-    "roomType": "Single Bed",
-    "status": "Check Out"
-  },
-  {
     "id": 2,
     "bookingID": 3460,
     "userName": "Lilly Potter",
@@ -31,17 +20,6 @@
     "specialRequest": "",
     "roomType": "Double Bed",
     "status": "Check Out"
-  },
-  {
-    "id": 4,
-    "bookingID": 49121,
-    "userName": "Ashil Thorius",
-    "orderDate": "12/12/2022, 10:00:00",
-    "checkIn": "2022-11-03",
-    "checkOut": "2022-12-01",
-    "specialRequest": "",
-    "roomType": "Single Bed",
-    "status": "Check In"
   },
   {
     "id": 5,

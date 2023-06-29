@@ -1,6 +1,7 @@
 import { IRooms } from "../models/roomsModel";
 import { Request, Response } from "express";
 import roomsData from "../data/rooms.json";
+import { saveToDataBase } from "../utils/utils";
 
 export const getRooms = function (req: Request, res: Response) {
   res.status(200).json(roomsData);
@@ -18,8 +19,9 @@ export const getRoom = function (req: Request<{ id: number }>, res: Response) {
 };
 
 export const postRoom = function (req: Request, res: Response) {
-  const newRoom: string = "Creating new room";
-  res.status(200).json(newRoom);
+  roomsData.push(req.body);
+  saveToDataBase(roomsData, "rooms.json");
+  res.status(200).json(roomsData);
 };
 
 export const putRoom = function (req: Request, res: Response) {
@@ -30,6 +32,9 @@ export const putRoom = function (req: Request, res: Response) {
 
 export const deleteRoom = function (req: Request, res: Response) {
   const { id } = req.params;
-  const singleRoom: string = `Deleting the booking with room number ${id}`;
-  res.status(200).json(singleRoom);
+  let newRoomsDataFiltered = roomsData.filter(
+    (room: IRooms) => room.room_number !== Number(id)
+  );
+  saveToDataBase(newRoomsDataFiltered, "rooms.json");
+  res.status(200).json(newRoomsDataFiltered);
 };
