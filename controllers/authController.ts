@@ -1,6 +1,5 @@
 import { Request, Response } from "express";
 import { generateAccessToken, isUserAuthenticated } from "../middleware/auth";
-import { ILogin } from "../models/loginModel";
 
 export const getLogin = function (req: Request, res: Response) {
   res.send("Login");

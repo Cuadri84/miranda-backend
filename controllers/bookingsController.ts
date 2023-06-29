@@ -1,6 +1,7 @@
 import { IBooking } from "../models/bookingsModel";
 import { Request, Response } from "express";
 import bookingsData from "../data/bookings.json";
+import { saveToDataBase } from "../utils/utils";
 
 export const getBookings = function (req: Request, res: Response) {
   res.status(200).json(bookingsData);
@@ -21,8 +22,9 @@ export const getBooking = function (
 };
 
 export const postBooking = function (req: Request, res: Response) {
-  const newBooking: string = "Creating new booking";
-  res.status(200).json(newBooking);
+  bookingsData.push(req.body);
+  saveToDataBase(bookingsData, "bookings.json");
+  res.status(200).json(bookingsData);
 };
 
 export const putBooking = function (req: Request, res: Response) {
@@ -33,6 +35,9 @@ export const putBooking = function (req: Request, res: Response) {
 
 export const deleteBooking = function (req: Request, res: Response) {
   const { id } = req.params;
-  const singleBooking: string = `Deleting the booking with ID ${id}`;
-  res.status(200).json(singleBooking);
+  let deletedBooking = bookingsData.filter(
+    (booking: IBooking) => booking.id !== Number(id)
+  );
+  saveToDataBase(deletedBooking, "bookings.json");
+  res.status(200).json(bookingsData);
 };
