@@ -1,19 +1,20 @@
 Creacion de tablas
 
 CREATE TABLE bookings (
-   id int PRIMARY KEY,
-   bookingID int,
-   userName varchar(10),
-   orderDate datetime,
-   checkIn date,
-   checkOut date,
-   specialRequest varchar(255),
-   roomType varchar(30),
-   status varchar(20)
+  id int PRIMARY KEY,
+  roomID int,
+  userName varchar(10),
+  orderDate datetime,
+  checkIn date,
+  checkOut date,
+  specialRequest varchar(255),
+  roomType varchar(30),
+  status varchar(20),
+  FOREIGN KEY (roomID) REFERENCES rooms(id)
 );
 CREATE TABLE rooms (
-  id int,
-  room_number int PRIMARY KEY,
+  id int PRIMARY KEY,
+  room_number int,
   photo varchar(255),
   photoTwo varchar(255),
   photoThree varchar(255),
