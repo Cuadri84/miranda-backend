@@ -46,7 +46,7 @@ export const getRoom = async function (
 
 export const postRoom = async function (req: Request, res: Response) {
   try {
-    const fakeRoom = fakerRoom();
+    // const fakeRoom = fakerRoom(); use to create fake rooms
     const postRoom: IRooms = req.body;
 
     const connection = await SQLconnection();
@@ -54,28 +54,28 @@ export const postRoom = async function (req: Request, res: Response) {
     await connection.execute(
       "INSERT INTO rooms (id, room_number, photo, photoTwo, photoThree, photoFour, photoFive, description, discountPercent, discount, cancellationPolicy, bed_type, room_facilities, room_rate, room_offer, room_status) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?,?)",
       [
-        postRoom.id || fakeRoom.id,
-        postRoom.room_number || fakeRoom.room_number,
-        postRoom.photo || fakeRoom.photo,
-        postRoom.photoTwo || fakeRoom.photoTwo,
-        postRoom.photoThree || fakeRoom.photoThree,
-        postRoom.photoFour || fakeRoom.photoFour,
-        postRoom.photoFive || fakeRoom.photoFive,
-        postRoom.description || fakeRoom.description,
-        postRoom.discountPercent || fakeRoom.discountPercent,
-        postRoom.discount || fakeRoom.discount,
-        postRoom.cancellationPolicy || fakeRoom.cancellationPolicy,
-        postRoom.bed_type || fakeRoom.bed_type,
-        postRoom.room_facilities || JSON.stringify(fakeRoom.room_facilities),
-        postRoom.room_rate || fakeRoom.room_rate,
-        postRoom.room_offer || fakeRoom.room_offer,
-        postRoom.room_status || fakeRoom.room_status,
+        postRoom.id,
+        postRoom.room_number,
+        postRoom.photo,
+        postRoom.photoTwo,
+        postRoom.photoThree,
+        postRoom.photoFour,
+        postRoom.photoFive,
+        postRoom.description,
+        postRoom.discountPercent,
+        postRoom.discount,
+        postRoom.cancellationPolicy,
+        postRoom.bed_type,
+        postRoom.room_facilities,
+        postRoom.room_rate,
+        postRoom.room_offer,
+        postRoom.room_status,
       ]
     );
 
     await connection.end();
 
-    res.status(200).json(postRoom || fakeRoom);
+    res.status(200).json(postRoom);
   } catch (error) {
     console.error("Error inserting room into database:", error);
     res.status(500).json({ error: "Error inserting room into database" });
