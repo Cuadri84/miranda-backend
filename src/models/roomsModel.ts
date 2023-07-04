@@ -1,5 +1,5 @@
 export interface IRooms {
-  id: string;
+  id: number;
   room_number: number;
   photo: string;
   photoTwo: string;
@@ -7,8 +7,8 @@ export interface IRooms {
   photoFour: string;
   photoFive: string;
   description: string;
-  discountPercent: string;
-  discount: string;
+  discountPercent: number;
+  discount: number;
   cancellationPolicy: string;
   bed_type: string;
   room_facilities: string[];

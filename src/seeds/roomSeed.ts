@@ -11,18 +11,18 @@ const roomFacilities = [
   "Coffee set",
 ];
 
-function fakeRoom(): IRooms {
+export function fakerRoom(): IRooms {
   return {
-    id: faker.datatype.uuid(),
-    room_number: faker.datatype.number(),
-    photo: faker.image.imageUrl(),
-    photoTwo: faker.image.imageUrl(),
-    photoThree: faker.image.imageUrl(),
-    photoFour: faker.image.imageUrl(),
-    photoFive: faker.image.imageUrl(),
+    id: faker.number.int({ min: 1, max: 999 }),
+    room_number: faker.number.int({ min: 1, max: 999 }),
+    photo: faker.image.url(),
+    photoTwo: faker.image.url(),
+    photoThree: faker.image.url(),
+    photoFour: faker.image.url(),
+    photoFive: faker.image.url(),
     description: faker.lorem.sentence(),
-    discountPercent: faker.datatype.string(),
-    discount: faker.datatype.string(),
+    discountPercent: faker.number.int({ min: 1, max: 999 }),
+    discount: faker.number.int({ min: 1, max: 999 }),
     cancellationPolicy: faker.lorem.paragraph(),
     bed_type: faker.helpers.arrayElement([
       "single",
@@ -31,13 +31,9 @@ function fakeRoom(): IRooms {
       "suite",
     ]),
     room_facilities: faker.helpers.arrayElements(roomFacilities, 3),
-    room_rate: faker.datatype.float(),
-    room_offer: faker.datatype.number(),
+    room_rate: faker.number.int({ min: 1, max: 999 }),
+    room_offer: faker.number.int({ min: 1, max: 999 }),
 
     room_status: faker.helpers.arrayElement(["available", "occupied"]),
   };
 }
-
-const rooms: IRooms[] = Array.from({ length: 10 }, fakeRoom);
-
-console.log(rooms);

@@ -3,7 +3,7 @@ import {
   getRooms,
   getRoom,
   postRoom,
-  putRoom,
+  // putRoom,
   deleteRoom,
 } from "../controllers/roomsController";
 
@@ -19,7 +19,7 @@ roomsRouter.get("/:id", getRoom);
 roomsRouter.post("/", postRoom);
 
 // PUT a room (Update method)
-roomsRouter.put("/:id", putRoom);
+// roomsRouter.put("/:id", putRoom);
 
 // DELETE single room (Delete method)
 roomsRouter.delete("/:id", deleteRoom);
