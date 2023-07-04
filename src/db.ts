@@ -20,12 +20,6 @@ async function connectToDatabase() {
   try {
     const connection = await SQLconnection();
     console.log("Connected to database");
-
-    // Realizar consultas u otras operaciones con la base de datos aquí
-
-    // Cerrar la conexión cuando hayas terminado
-    // await connection.end();
-    // console.log("Disconnected from database");
   } catch (error) {
     console.error("Error connecting to database:", error);
   }

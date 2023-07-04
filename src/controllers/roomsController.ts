@@ -1,8 +1,5 @@
 import { IRooms } from "../models/roomsModel";
 import { Request, Response } from "express";
-import roomsData from "../data/rooms.json";
-import { saveToDataBase } from "../utils/utils";
-import * as faker from "@faker-js/faker";
 import { SQLconnection } from "../db";
 import { fakerRoom } from "../seeds/roomSeed";
 
@@ -84,26 +81,45 @@ export const postRoom = async function (req: Request, res: Response) {
   }
 };
 
-// export const putRoom = function (
-//   req: Request<{ body: IRooms; id: any }>,
-//   res: Response
-// ) {
-//   const { id } = req.params;
-//   const { body } = req;
+export const putRoom = async function (
+  req: Request<{ body: IRooms; id: any }>,
+  res: Response
+) {
+  const { id } = req.params;
+  const updatedRoom: IRooms = req.body;
 
-//   const existingRoom: IRooms | undefined = roomsData.find(
-//     (rooms: IRooms) => rooms.room_number === Number(id)
-//   );
-//   if (!existingRoom) {
-//     res.status(404).json("Booking not found");
-//   } else {
-//     let roomUpdated = roomsData.map((room) =>
-//       room.room_number === Number(id) ? body : room
-//     );
-//     saveToDataBase(roomUpdated, "rooms.json");
-//     res.status(200).json(roomUpdated);
-//   }
-// };
+  try {
+    const connection = await SQLconnection();
+
+    const query = `UPDATE rooms SET
+    room_number = ${connection.escape(updatedRoom.room_number)},
+    photo = ${connection.escape(updatedRoom.photo)},
+    photoTwo = ${connection.escape(updatedRoom.photoTwo)},
+    photoThree = ${connection.escape(updatedRoom.photoThree)},
+    photoFour = ${connection.escape(updatedRoom.photoFour)},
+    photoFive = ${connection.escape(updatedRoom.photoFive)},
+    description = ${connection.escape(updatedRoom.description)},
+    discountPercent = ${connection.escape(updatedRoom.discountPercent)},
+    discount = ${connection.escape(updatedRoom.discount)},
+    cancellationPolicy = ${connection.escape(updatedRoom.cancellationPolicy)},
+    bed_type = ${connection.escape(updatedRoom.bed_type)},
+    room_facilities = ${connection.escape(
+      JSON.stringify(updatedRoom.room_facilities)
+    )},
+    room_rate = ${connection.escape(updatedRoom.room_rate)},
+    room_offer = ${connection.escape(updatedRoom.room_offer)},
+    room_status = ${connection.escape(updatedRoom.room_status)}
+    WHERE room_number = ${connection.escape(id)}`;
+
+    // Ejecutar la consulta SQL
+    await connection.query(query);
+    connection.end();
+    res.sendStatus(200);
+  } catch (error) {
+    console.error("Error al actualizar la habitación:", error);
+    res.sendStatus(500);
+  }
+};
 
 export const deleteRoom = async function (req: Request, res: Response) {
   try {
