@@ -32,10 +32,10 @@ CREATE TABLE rooms (
   CHECK (room_status IN ('Available', 'Booked'))
 );
 CREATE TABLE contact (
-   id int PRIMARY KEY,
+   id int PRIMARY KEY AUTO_INCREMENT,
    `date` date,
    userName varchar(10),
-   userEmail varchar(20),         a 40
+   userEmail varchar(40),
    userPhone varchar(15),
    messageSubject varchar(50),
    messageBody text,
@@ -43,16 +43,17 @@ CREATE TABLE contact (
 );
 
 CREATE TABLE users (
-    id INT PRIMARY KEY,
+    id INT PRIMARY KEY AUTO_INCREMENT,
     photo VARCHAR(255),
-    name VARCHAR(50),
-    position VARCHAR(30),     enum mirar en dashboard
-    email VARCHAR(100),     a 40
-    phone INT,              a varchar de 15
-    date DATE,
-    description TEXT,
-    state VARCHAR(15)         boolean mirar en dashboard
+    `name` VARCHAR(50),
+    position ENUM('manager', 'recepcionist', 'waitress'),
+    email VARCHAR(40),
+    phone VARCHAR(15),
+    `date` DATE,
+    `description` TEXT,
+    `state` ENUM('active', 'inactive')
 );
+
 
 -- REST-----------------------------------------
 ------------------------------------------------

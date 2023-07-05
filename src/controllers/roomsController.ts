@@ -26,7 +26,7 @@ export const getRoom = async function (
   try {
     const connection = await SQLconnection();
 
-    const query = "SELECT * FROM rooms WHERE room_number = ?";
+    const query = "SELECT * FROM rooms WHERE id = ?";
 
     const [rows] = await connection.execute(query, [id]);
 
