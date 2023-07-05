@@ -4,7 +4,6 @@ import dotenv from "dotenv";
 
 dotenv.config();
 const secretDbToken = process.env.DB_PASS || "secretDb";
-// create the connection to database
 async function SQLconnection(): Promise<Connection> {
   const connection = await createConnection({
     host: "localhost",

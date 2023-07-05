@@ -1,7 +1,7 @@
 import { IRooms } from "../models/roomsModel";
 import { Request, Response } from "express";
 import { SQLconnection } from "../db";
-import { fakerRoom } from "../seeds/roomSeed";
+// import { fakerRoom } from "../seeds/roomSeed";
 
 export const getRooms = async function (req: Request, res: Response) {
   try {
@@ -52,9 +52,8 @@ export const postRoom = async function (req: Request, res: Response) {
     const connection = await SQLconnection();
 
     await connection.execute(
-      "INSERT INTO rooms (id, room_number, photo, photoTwo, photoThree, photoFour, photoFive, description, discountPercent, discount, cancellationPolicy, bed_type, room_facilities, room_rate, room_offer, room_status) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?,?)",
+      "INSERT INTO rooms (room_number, photo, photoTwo, photoThree, photoFour, photoFive, description, discountPercent, discount, cancellationPolicy, bed_type, room_facilities, room_rate, room_offer, room_status) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?,?)",
       [
-        postRoom.id,
         postRoom.room_number,
         postRoom.photo,
         postRoom.photoTwo,
@@ -92,27 +91,84 @@ export const putRoom = async function (
   try {
     const connection = await SQLconnection();
 
-    const query = `UPDATE rooms SET
-    room_number = ${connection.escape(updatedRoom.room_number)},
-    photo = ${connection.escape(updatedRoom.photo)},
-    photoTwo = ${connection.escape(updatedRoom.photoTwo)},
-    photoThree = ${connection.escape(updatedRoom.photoThree)},
-    photoFour = ${connection.escape(updatedRoom.photoFour)},
-    photoFive = ${connection.escape(updatedRoom.photoFive)},
-    description = ${connection.escape(updatedRoom.description)},
-    discountPercent = ${connection.escape(updatedRoom.discountPercent)},
-    discount = ${connection.escape(updatedRoom.discount)},
-    cancellationPolicy = ${connection.escape(updatedRoom.cancellationPolicy)},
-    bed_type = ${connection.escape(updatedRoom.bed_type)},
-    room_facilities = ${connection.escape(
-      JSON.stringify(updatedRoom.room_facilities)
-    )},
-    room_rate = ${connection.escape(updatedRoom.room_rate)},
-    room_offer = ${connection.escape(updatedRoom.room_offer)},
-    room_status = ${connection.escape(updatedRoom.room_status)}
-    WHERE room_number = ${connection.escape(id)}`;
+    let updateFields = "";
 
-    // Ejecutar la consulta SQL
+    if (updatedRoom.room_number) {
+      updateFields += `room_number = ${connection.escape(
+        updatedRoom.room_number
+      )}, `;
+    }
+    if (updatedRoom.photo) {
+      updateFields += `photo = ${connection.escape(updatedRoom.photo)}, `;
+    }
+    if (updatedRoom.photoTwo) {
+      updateFields += `photoTwo = ${connection.escape(updatedRoom.photoTwo)}, `;
+    }
+    if (updatedRoom.photoThree) {
+      updateFields += `photoThree = ${connection.escape(
+        updatedRoom.photoThree
+      )}, `;
+    }
+    if (updatedRoom.photoFour) {
+      updateFields += `photoFour = ${connection.escape(
+        updatedRoom.photoFour
+      )}, `;
+    }
+    if (updatedRoom.photoFive) {
+      updateFields += `photoFive = ${connection.escape(
+        updatedRoom.photoFive
+      )}, `;
+    }
+    if (updatedRoom.description) {
+      updateFields += `description = ${connection.escape(
+        updatedRoom.description
+      )}, `;
+    }
+    if (updatedRoom.discountPercent) {
+      updateFields += `discountPercent = ${connection.escape(
+        updatedRoom.discountPercent
+      )}, `;
+    }
+    if (updatedRoom.discount) {
+      updateFields += `discount = ${connection.escape(updatedRoom.discount)}, `;
+    }
+    if (updatedRoom.cancellationPolicy) {
+      updateFields += `cancellationPolicy = ${connection.escape(
+        updatedRoom.cancellationPolicy
+      )}, `;
+    }
+    if (updatedRoom.bed_type) {
+      updateFields += `bed_type = ${connection.escape(updatedRoom.bed_type)}, `;
+    }
+    if (updatedRoom.room_facilities) {
+      updateFields += `room_facilities = ${connection.escape(
+        JSON.stringify(updatedRoom.room_facilities)
+      )}, `;
+    }
+    if (updatedRoom.room_rate) {
+      updateFields += `room_rate = ${connection.escape(
+        updatedRoom.room_rate
+      )}, `;
+    }
+    if (updatedRoom.room_offer) {
+      updateFields += `room_offer = ${connection.escape(
+        updatedRoom.room_offer
+      )}, `;
+    }
+    if (updatedRoom.room_status) {
+      updateFields += `room_status = ${connection.escape(
+        updatedRoom.room_status
+      )}, `;
+    }
+
+    if (updateFields !== "") {
+      updateFields = updateFields.slice(0, -2); // Eliminar la coma y el espacio sobrantes al final
+    }
+
+    const query = `UPDATE rooms SET ${updateFields} WHERE room_number = ${connection.escape(
+      id
+    )}`;
+
     await connection.query(query);
     connection.end();
     res.sendStatus(200);
@@ -128,7 +184,7 @@ export const deleteRoom = async function (req: Request, res: Response) {
 
     const connection = await SQLconnection();
 
-    const query = "DELETE FROM rooms WHERE room_number = ?";
+    const query = "DELETE FROM rooms WHERE id = ?";
 
     const [result] = await connection.execute(query, [id]);
 

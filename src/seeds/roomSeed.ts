@@ -13,7 +13,6 @@ const roomFacilities = [
 
 export function fakerRoom(): IRooms {
   return {
-    id: faker.number.int({ min: 1, max: 999 }),
     room_number: faker.number.int({ min: 1, max: 999 }),
     photo: faker.image.url(),
     photoTwo: faker.image.url(),
@@ -33,7 +32,6 @@ export function fakerRoom(): IRooms {
     room_facilities: faker.helpers.arrayElements(roomFacilities, 3),
     room_rate: faker.number.int({ min: 1, max: 999 }),
     room_offer: faker.number.int({ min: 1, max: 999 }),
-
     room_status: faker.helpers.arrayElement(["available", "occupied"]),
   };
 }
