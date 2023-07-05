@@ -24,6 +24,6 @@ app.use("/", verifyToken, dashboardRouter);
 app.use("/bookings", verifyToken, bookingsRouter);
 app.use("/rooms", verifyToken, roomsRouter);
 app.use("/users", verifyToken, usersRouter);
-app.use("/contacts", verifyToken, contactRouter);
+app.use("/contact", verifyToken, contactRouter);
 
 export default app;
