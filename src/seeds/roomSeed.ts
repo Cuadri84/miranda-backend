@@ -35,3 +35,46 @@ export function fakerRoom(): IRooms {
     room_status: faker.helpers.arrayElement(["available", "occupied"]),
   };
 }
+import { SQLconnection } from "../db";
+
+async function insertRoom(room: IRooms) {
+  try {
+    const connection = await SQLconnection();
+
+    const query = `INSERT INTO rooms (room_number, photo, photoTwo, photoThree, photoFour, photoFive, description, discountPercent, discount, cancellationPolicy, bed_type, room_facilities, room_rate, room_offer, room_status) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`;
+    const values = [
+      room.room_number,
+      room.photo,
+      room.photoTwo,
+      room.photoThree,
+      room.photoFour,
+      room.photoFive,
+      room.description,
+      room.discountPercent,
+      room.discount,
+      room.cancellationPolicy,
+      room.bed_type,
+      JSON.stringify(room.room_facilities),
+      room.room_rate,
+      room.room_offer,
+      room.room_status,
+    ];
+
+    await connection.query(query, values);
+    console.log("Room inserted successfully");
+  } catch (error) {
+    console.error("Error inserting room:", error);
+  }
+}
+
+async function insertRandomRoom() {
+  try {
+    const room = fakerRoom();
+    await insertRoom(room);
+  } catch (error) {
+    console.error("Error generating and inserting random room:", error);
+  }
+}
+
+// Inserta una habitación aleatoria en la base de datos
+insertRandomRoom();

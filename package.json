@@ -4,7 +4,8 @@
     "startDb": "nodemon src/db.ts",
     "build": "rimraf dist && tsc",
     "build:prod": "npm run build && rd /s/q node_modules && npm i --omit=dev",
-    "deploy": "npm run build:prod && serverless deploy --force && npm run build"
+    "deploy": "npm run build:prod && serverless deploy --force && npm run build",
+    "insert-room": "ts-node src/seeds/roomSeed.ts"
   },
   "dependencies": {
     "crypto-js": "^4.1.1",
