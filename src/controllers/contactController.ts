@@ -1,6 +1,7 @@
 import { Request, Response } from "express";
 import { SQLconnection } from "../db";
 import { IContact } from "../models/contactModel";
+import { contactValidator } from "../validators/contactValidator";
 
 export const getContacts = async function (req: Request, res: Response) {
   try {
@@ -21,18 +22,19 @@ export const postContact = async function (req: Request, res: Response) {
   try {
     const postContact: IContact = req.body;
 
+    const validateComment = await contactValidator.validateAsync(postContact);
+
     const connection = await SQLconnection();
 
     await connection.execute(
-      "INSERT INTO contact (date,userName,userEmail,userPhone,messageSubject,messageBody,archived) VALUES (?, ?, ?, ?, ?, ?, ?)",
+      "INSERT INTO contact (date,userName,userEmail,userPhone,messageSubject,messageBody) VALUES (?, ?, ?, ?, ?, ?)",
       [
-        postContact.date,
-        postContact.userName,
-        postContact.userEmail,
-        postContact.userPhone,
-        postContact.messageSubject,
-        postContact.messageBody,
-        postContact.archived,
+        validateComment.date,
+        validateComment.userName,
+        validateComment.userEmail,
+        validateComment.userPhone,
+        validateComment.messageSubject,
+        validateComment.messageBody,
       ]
     );
 
