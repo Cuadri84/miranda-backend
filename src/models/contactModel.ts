@@ -1,14 +1,10 @@
 export interface IContact {
   id: number;
-  date: number;
-  user: {
-    name: string;
-    email: string;
-    phone: number;
-  };
-  message: {
-    subject: string;
-    body: string;
-  };
+  date: Date;
+  userName: string;
+  userEmail: string;
+  userPhone: number;
+  messageSubject: string;
+  messageBody: string;
   archived: boolean;
 }

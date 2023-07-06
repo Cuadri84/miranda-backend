@@ -69,4 +69,11 @@ UPDATE bookings SET ? WHERE id = ?
 --delte
 DELETE FROM bookings WHERE id = ?
 ------------------------------------------------
+--PARA VER CUANDO EZTA BOOKED UNA ROOM par ael calendario
+SELECT * FROM bookings
+INNER JOIN rooms ON rooms.id = bookings.roomID
+WHERE bookings.roomID = 4
+AND bookings.checkIn >= 'XXXX-XX-XX XX:XX:XX'
+AND bookings.checkOut <= 'XXXX-XX-XX';
 
+Las X las cambias por la fecha que sea
