@@ -13,7 +13,7 @@ export const contactValidator = Joi.object<IContact>({
     .required()
     .min(8)
     .max(15)
-    .pattern(new RegExp("^[0-9]+$")),
+    .pattern(new RegExp("^[0-9,+]+$")),
   messageSubject: Joi.string().required().min(3).max(50),
   messageBody: Joi.string().required(),
 });
