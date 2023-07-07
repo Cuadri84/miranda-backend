@@ -1,6 +1,7 @@
 import { IUser } from "../models/usersModel";
 import { Request, Response } from "express";
 import { SQLconnection } from "../db";
+import { hashPassword } from "../utils/utils";
 
 export const getUsers = async function (req: Request, res: Response) {
   try {
@@ -46,11 +47,11 @@ export const getUser = async function (
 export const postUser = async function (req: Request, res: Response) {
   try {
     const postUser: IUser = req.body;
-
+    const hashedPassword = hashPassword(postUser.password);
     const connection = await SQLconnection();
 
     await connection.execute(
-      "INSERT INTO users (photo,name,position,email,phone,date,description,state) VALUES (?, ?, ?, ?, ?, ?, ?, ?)",
+      "INSERT INTO users (photo,name,position,email,phone,date,description,state,password) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)",
       [
         postUser.photo,
         postUser.name,
@@ -60,6 +61,7 @@ export const postUser = async function (req: Request, res: Response) {
         postUser.date,
         postUser.description,
         postUser.state,
+        hashedPassword,
       ]
     );
 
@@ -116,7 +118,7 @@ export const putUser = async function (
     }
 
     if (updateFields !== "") {
-      updateFields = updateFields.slice(0, -2); // Eliminar la coma y el espacio sobrantes al final
+      updateFields = updateFields.slice(0, -2);
     }
 
     const query = `UPDATE users SET ${updateFields} WHERE id = ${connection.escape(

@@ -1,5 +1,9 @@
 import crypto from "crypto";
+import dotenv from "dotenv";
 import fs from "fs";
+
+dotenv.config();
+const salt = process.env.SALT || "secretSalt";
 
 export const saveToDataBase = (value: any, filename: string) => {
   fs.writeFileSync(`./data/${filename}`, JSON.stringify(value), {
@@ -8,6 +12,5 @@ export const saveToDataBase = (value: any, filename: string) => {
 };
 
 export function hashPassword(password: string) {
-  const salt = crypto.randomBytes(16).toString("hex");
   return crypto.pbkdf2Sync(password, salt, 1000, 64, "sha512").toString("hex");
 }

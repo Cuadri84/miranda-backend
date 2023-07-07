@@ -20,8 +20,8 @@ export function fakerRoom(): IRooms {
     photoFour: faker.image.url(),
     photoFive: faker.image.url(),
     description: faker.lorem.sentence(),
-    discountPercent: faker.number.int({ min: 1, max: 999 }),
-    discount: faker.number.int({ min: 1, max: 999 }),
+    discountPercent: faker.number.int({ min: 1, max: 100 }),
+    discount: faker.number.int({ min: 1, max: 100 }),
     cancellationPolicy: faker.lorem.paragraph(),
     bed_type: faker.helpers.arrayElement([
       "single",
@@ -76,5 +76,4 @@ async function insertRandomRoom() {
   }
 }
 
-// Inserta una habitación aleatoria en la base de datos
 insertRandomRoom();

@@ -162,7 +162,7 @@ export const putRoom = async function (
     }
 
     if (updateFields !== "") {
-      updateFields = updateFields.slice(0, -2); // Eliminar la coma y el espacio sobrantes al final
+      updateFields = updateFields.slice(0, -2);
     }
 
     const query = `UPDATE rooms SET ${updateFields} WHERE room_number = ${connection.escape(
