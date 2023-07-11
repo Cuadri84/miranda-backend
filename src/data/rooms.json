@@ -1,6 +1,5 @@
 [
   {
-    "id": 3,
     "room_number": 2,
     "photo": "https://images.unsplash.com/photo-1572803090136-5247de70532f?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1774&q=80",
     "photoTwo": "",
@@ -15,7 +14,27 @@
     "room_facilities": ["Kitchen", "Grocery", "Cleaning", "Towels"],
     "room_rate": 33.74,
     "room_offer": "",
-    "room_status": "Available"
+    "room_status": "Available",
+    "bookings": [
+      {
+        "name": "Lilly Potter",
+        "orderDate": "12/10/2022, 10:00:00",
+        "checkIn": "2022-11-04",
+        "checkOut": "2022-12-01",
+        "specialRequest": "",
+        "roomType": "Suite",
+        "status": "In Progress"
+      },
+      {
+        "name": "Harry Potter",
+        "orderDate": "12/10/2022, 10:00:00",
+        "checkIn": "2023-06-08",
+        "checkOut": "2023-06-12",
+        "specialRequest": "",
+        "roomType": "Suite",
+        "status": "In Progress"
+      }
+    ]
   },
   {
     "id": "6612sd939",

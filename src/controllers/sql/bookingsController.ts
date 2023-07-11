@@ -1,6 +1,6 @@
-import { IBooking } from "../models/bookingsModel";
+import { IBooking } from "../../models/bookingsModel";
 import { Request, Response } from "express";
-import { SQLconnection } from "../db";
+import { SQLconnection } from "../../sqldb";
 
 export const getBookings = async function (req: Request, res: Response) {
   try {

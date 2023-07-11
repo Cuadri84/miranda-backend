@@ -35,7 +35,7 @@ export function fakerRoom(): IRooms {
     room_status: faker.helpers.arrayElement(["available", "occupied"]),
   };
 }
-import { SQLconnection } from "../db";
+import { SQLconnection } from "../sqldb";
 
 async function insertRoom(room: IRooms) {
   try {

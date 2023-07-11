@@ -1,5 +1,6 @@
 import express from "express";
-import { getContacts, postContact } from "../controllers/contactController";
+import { getContacts } from "../controllers/mongo/contactController";
+// import { getContacts, postContact } from "../controllers/sql/contactController";
 
 const contactRouter = express.Router();
 
@@ -7,6 +8,6 @@ const contactRouter = express.Router();
 contactRouter.get("/", getContacts);
 
 // POST a new user (Create method)
-contactRouter.post("/", postContact);
+// contactRouter.post("/", postContact);
 
 export default contactRouter;

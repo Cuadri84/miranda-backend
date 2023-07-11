@@ -1,6 +1,6 @@
-import { IRooms } from "../models/roomsModel";
+import { IRooms } from "../../models/roomsModel";
 import { Request, Response } from "express";
-import { SQLconnection } from "../db";
+import { SQLconnection } from "../../sqldb";
 // import { fakerRoom } from "../seeds/roomSeed";
 
 export const getRooms = async function (req: Request, res: Response) {

@@ -17,7 +17,7 @@ async function SQLconnection(): Promise<Connection> {
 async function connectToDatabase() {
   try {
     const connection = await SQLconnection();
-    console.log("Connected to database");
+    console.log("Connected to SQL database");
   } catch (error) {
     console.error("Error connecting to database:", error);
   }

@@ -1,7 +1,7 @@
-import { IUser } from "../models/usersModel";
+import { IUser } from "../../models/usersModel";
 import { Request, Response } from "express";
-import { SQLconnection } from "../db";
-import { hashPassword } from "../utils/utils";
+import { SQLconnection } from "../../sqldb";
+import { hashPassword } from "../../utils/utils";
 
 export const getUsers = async function (req: Request, res: Response) {
   try {

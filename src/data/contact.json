@@ -2,16 +2,11 @@
   {
     "id": 2361,
     "date": "2022-05-22",
-    "user": {
-      "name": "Nadita",
-      "email": "vchittock0@businesswire.com",
-      "phone": "975-135-6128"
-    },
-    "message": {
-      "subject": "I dont know what to write here",
-      "body": "Everything was fine until the last day where i had to take a shower with cold water"
-    },
-    "stars": 2,
+    "name": "Nadita",
+    "mail": "vchittock0@businesswire.com",
+    "phone": "975-135-6128",
+    "messageSubject": "I dont know what to write here",
+    "messageBody": "Everything was fine until the last day where i had to take a shower with cold water",
     "archived": true
   },
   {

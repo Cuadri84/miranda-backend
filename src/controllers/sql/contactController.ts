@@ -1,7 +1,7 @@
 import { Request, Response } from "express";
-import { SQLconnection } from "../db";
-import { IContact } from "../models/contactModel";
-import { contactValidator } from "../validators/contactValidator";
+import { SQLconnection } from "../../sqldb";
+import { IContact } from "../../models/contactModel";
+import { contactValidator } from "../../validators/contactValidator";
 
 export const getContacts = async function (req: Request, res: Response) {
   try {
