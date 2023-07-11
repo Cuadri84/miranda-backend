@@ -5,7 +5,7 @@ import {
   postRoom,
   putRoom,
   deleteRoom,
-} from "../controllers/sql/roomsController";
+} from "../controllers/mongo/roomController";
 
 const roomsRouter = express.Router();
 
