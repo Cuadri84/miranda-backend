@@ -1,7 +1,10 @@
 import mongoose from "mongoose";
 
+//cambiar por este connect para trabajar en local en compass
+// .connect("mongodb://localhost/miranda")
+
 export const mongodbconnection = mongoose
-  .connect("mongodb://localhost/miranda")
+  .connect("mongodb+srv://cuadri84:cuadri84@miranda.ou5esvk.mongodb.net/")
   .then(() => {
     console.log("Conectado a la base de datos de MongoDB");
   })
