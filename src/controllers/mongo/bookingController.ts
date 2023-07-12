@@ -115,31 +115,31 @@ export const postBooking = async function (req: Request, res: Response) {
 //   }
 // };
 
-// // Eliminar una reserva por su ID
-// export const deleteBooking = async function (req: Request, res: Response) {
-//   try {
-//     await mongodbconnection;
-//     const roomId = req.params.roomId;
-//     const bookingId = Number(req.params.bookingId);
-//     const room = await RoomModel.findById(roomId);
+// Eliminar una reserva
+export const deleteBooking = async function (req: Request, res: Response) {
+  try {
+    await mongodbconnection;
 
-//     if (!room) {
-//       return res.status(404).json({ message: "Habitación no encontrada" });
-//     }
+    const bookingId = req.params.id;
 
-//     const bookingIndex = room.bookings.findIndex(
-//       (booking) => booking.id === bookingId
-//     );
-//     if (bookingIndex === -1) {
-//       return res.status(404).json({ message: "Reserva no encontrada" });
-//     }
+    // Buscar y eliminar la reserva
+    const deletedBooking = await BookingModel.findByIdAndDelete(bookingId);
 
-//     room.bookings.splice(bookingIndex, 1);
-//     await room.save();
+    if (!deletedBooking) {
+      return res.status(404).json({ message: "Reserva no encontrada" });
+    }
 
-//     res.status(200).json({ message: "Reserva eliminada exitosamente" });
-//   } catch (error) {
-//     console.error("Error al eliminar la reserva:", error);
-//     throw error;
-//   }
-// };
+    const roomNumber = deletedBooking.room_number;
+
+    // Eliminar el _id de la reserva del array bookings en la habitación correspondiente
+    await RoomModel.updateOne(
+      { room_number: roomNumber },
+      { $pull: { bookings: deletedBooking._id } }
+    );
+
+    res.status(200).json({ message: "Reserva eliminada correctamente" });
+  } catch (error) {
+    console.error("Error al eliminar la reserva:", error);
+    throw error;
+  }
+};

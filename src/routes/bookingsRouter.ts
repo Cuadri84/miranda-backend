@@ -4,7 +4,7 @@ import {
   getBooking,
   postBooking,
   // putBooking,
-  // deleteBooking,
+  deleteBooking,
 } from "../controllers/mongo/bookingController";
 
 const bookingsRouter = express.Router();
@@ -21,7 +21,7 @@ bookingsRouter.post("/", postBooking);
 // // PUT a booking (Update method)
 // bookingsRouter.put("/:id", putBooking);
 
-// // DELETE single booking (Delete method)
-// bookingsRouter.delete("/:id", deleteBooking);
+// DELETE single booking (Delete method)
+bookingsRouter.delete("/:id", deleteBooking);
 
 export default bookingsRouter;
