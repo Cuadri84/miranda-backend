@@ -76,44 +76,29 @@ export const postBooking = async function (req: Request, res: Response) {
   }
 };
 
-// // Actualizar una reserva por su ID
-// export const putBooking = async function (req: Request, res: Response) {
-//   try {
-//     await mongodbconnection;
-//     const roomId = req.params.roomId;
-//     const bookingId = Number(req.params.bookingId);
-//     const room = await RoomModel.findById(roomId);
+// Actualizar una reserva por su ID
+export const putBooking = async function (req: Request, res: Response) {
+  try {
+    await mongodbconnection;
+    const bookingId = req.params.id;
+    const updatedBooking = await BookingModel.findByIdAndUpdate(
+      bookingId,
+      req.body,
+      {
+        new: true,
+      }
+    );
 
-//     if (!room) {
-//       return res.status(404).json({ message: "Habitación no encontrada" });
-//     }
-
-//     const bookingIndex = room.bookings.findIndex(
-//       (booking) => booking.id === bookingId
-//     );
-//     if (bookingIndex === -1) {
-//       return res.status(404).json({ message: "Reserva no encontrada" });
-//     }
-
-//     const bookingToUpdate = room.bookings[bookingIndex];
-//     bookingToUpdate.id = req.body.id;
-//     bookingToUpdate.name = req.body.name;
-//     bookingToUpdate.orderDate = req.body.orderDate;
-//     bookingToUpdate.checkIn = req.body.checkIn;
-//     bookingToUpdate.checkOut = req.body.checkOut;
-//     bookingToUpdate.specialRequest = req.body.specialRequest;
-//     bookingToUpdate.roomType = req.body.roomType;
-//     bookingToUpdate.status = req.body.status;
-
-//     await room.save();
-
-//     res.status(200).json(bookingToUpdate);
-//     return bookingToUpdate;
-//   } catch (error) {
-//     console.error("Error al actualizar la reserva:", error);
-//     throw error;
-//   }
-// };
+    if (!updatedBooking) {
+      return res.status(404).json({ message: "Booking no encontrado" });
+    }
+    res.status(200).json(updatedBooking);
+    return updatedBooking;
+  } catch (error) {
+    console.error("Error al actualizar la reserva:", error);
+    throw error;
+  }
+};
 
 // Eliminar una reserva
 export const deleteBooking = async function (req: Request, res: Response) {

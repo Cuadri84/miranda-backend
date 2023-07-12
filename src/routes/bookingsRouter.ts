@@ -3,7 +3,7 @@ import {
   getBookings,
   getBooking,
   postBooking,
-  // putBooking,
+  putBooking,
   deleteBooking,
 } from "../controllers/mongo/bookingController";
 
@@ -18,8 +18,8 @@ bookingsRouter.get("/:id", getBooking);
 // POST a new booking (Create method)
 bookingsRouter.post("/", postBooking);
 
-// // PUT a booking (Update method)
-// bookingsRouter.put("/:id", putBooking);
+// PUT a booking (Update method)
+bookingsRouter.put("/:id", putBooking);
 
 // DELETE single booking (Delete method)
 bookingsRouter.delete("/:id", deleteBooking);
