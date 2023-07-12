@@ -1,13 +1,11 @@
 [
   {
-    "id": 2,
-    "bookingID": 3460,
-    "userName": "Lilly Potter",
+    "name": "Lilly Potter",
     "orderDate": "12/10/2022, 10:00:00",
     "checkIn": "2022-11-04",
     "checkOut": "2022-12-01",
     "specialRequest": "",
-    "roomType": "Suite",
+    "room_number": 1,
     "status": "In Progress"
   },
   {

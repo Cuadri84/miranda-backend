@@ -1,10 +1,10 @@
 import express from "express";
 import {
   getBookings,
-  getBooking,
+  // getBooking,
   postBooking,
-  putBooking,
-  deleteBooking,
+  // putBooking,
+  // deleteBooking,
 } from "../controllers/mongo/bookingController";
 
 const bookingsRouter = express.Router();
@@ -13,15 +13,15 @@ const bookingsRouter = express.Router();
 bookingsRouter.get("/", getBookings);
 
 // GET single booking (Read method)
-bookingsRouter.get("/:id", getBooking);
+// bookingsRouter.get("/:id", getBooking);
 
 // POST a new booking (Create method)
 bookingsRouter.post("/", postBooking);
 
-// PUT a booking (Update method)
-bookingsRouter.put("/:id", putBooking);
+// // PUT a booking (Update method)
+// bookingsRouter.put("/:id", putBooking);
 
-// DELETE single booking (Delete method)
-bookingsRouter.delete("/:id", deleteBooking);
+// // DELETE single booking (Delete method)
+// bookingsRouter.delete("/:id", deleteBooking);
 
 export default bookingsRouter;

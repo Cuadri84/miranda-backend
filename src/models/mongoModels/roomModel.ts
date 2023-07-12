@@ -1,5 +1,5 @@
 import mongoose, { Schema, Document } from "mongoose";
-import { IBooking, BookingSchema } from "./bookingModel";
+import BookingModel, { IBooking, BookingSchema } from "./bookingModel";
 
 export interface IRoom extends Document {
   room_number: number;
@@ -17,7 +17,7 @@ export interface IRoom extends Document {
   room_rate: number;
   room_offer: string;
   room_status: string;
-  bookings: IBooking[];
+  bookings: { type: IBooking[]; default: [] };
 }
 
 const RoomSchema: Schema = new Schema({
@@ -29,14 +29,28 @@ const RoomSchema: Schema = new Schema({
   photoFive: { type: String },
   description: { type: String },
   discountPercent: { type: String },
-  discount: { type: String, required: true },
+  discount: { type: String },
   cancellationPolicy: { type: String },
-  bed_type: { type: String, required: true },
-  room_facilities: { type: [String], required: true },
+  bed_type: {
+    type: String,
+    enum: ["single", "double", "double-superior", "suite"],
+  },
+  room_facilities: {
+    type: [String],
+    enum: [
+      "Wifi",
+      "TV",
+      "Kitchen",
+      "Free parking",
+      "Air conditioning",
+      "Bathtub",
+      "Coffee set",
+    ],
+  },
   room_rate: { type: Number, required: true },
   room_offer: { type: String },
   room_status: { type: String, required: true },
-  bookings: { type: [BookingSchema], default: [] },
+  bookings: { type: Schema.Types.ObjectId, ref: "Booking" },
 });
 
 const RoomModel = mongoose.model<IRoom>("Room", RoomSchema);
