@@ -17,30 +17,25 @@ export const getBookings = async function (req: Request, res: Response) {
   }
 };
 
-// // Obtener una reserva por su ID
-// export const getBooking = async function (req: Request, res: Response) {
-//   try {
-//     await mongodbconnection;
-//     const roomId = req.params.roomId;
-//     const bookingId = Number(req.params.bookingId);
-//     const room = await RoomModel.findById(roomId);
+// Obtener una reserva por su ID
+export const getBooking = async function (req: Request, res: Response) {
+  try {
+    await mongodbconnection;
 
-//     if (!room) {
-//       return res.status(404).json({ message: "Habitación no encontrada" });
-//     }
+    const bookingId = req.params.id;
+    const booking = await BookingModel.findOne({ _id: bookingId });
 
-//     const booking = room.bookings.find((booking) => booking.id === bookingId);
-//     if (!booking) {
-//       return res.status(404).json({ message: "Reserva no encontrada" });
-//     }
+    if (!booking) {
+      return res.status(404).json({ message: "Booking no encontrado" });
+    }
 
-//     res.status(200).json(booking);
-//     return booking;
-//   } catch (error) {
-//     console.error("Error al obtener la reserva:", error);
-//     throw error;
-//   }
-// };
+    res.status(200).json(booking);
+    return booking;
+  } catch (error) {
+    console.error("Error al obtener la reserva:", error);
+    throw error;
+  }
+};
 
 // Crear una nueva reserva para una habitación
 export const postBooking = async function (req: Request, res: Response) {

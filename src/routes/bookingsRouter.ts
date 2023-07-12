@@ -1,7 +1,7 @@
 import express from "express";
 import {
   getBookings,
-  // getBooking,
+  getBooking,
   postBooking,
   // putBooking,
   // deleteBooking,
@@ -13,7 +13,7 @@ const bookingsRouter = express.Router();
 bookingsRouter.get("/", getBookings);
 
 // GET single booking (Read method)
-// bookingsRouter.get("/:id", getBooking);
+bookingsRouter.get("/:id", getBooking);
 
 // POST a new booking (Create method)
 bookingsRouter.post("/", postBooking);
