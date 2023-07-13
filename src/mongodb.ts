@@ -1,10 +1,15 @@
 import mongoose from "mongoose";
+import dotenv from "dotenv";
+
+dotenv.config();
 
 //cambiar por este connect para trabajar en local en compass
 // .connect("mongodb://localhost/miranda")
-
+const secretDbToken = process.env.MONGO_PASS;
 export const mongodbconnection = mongoose
-  .connect("mongodb+srv://cuadri84:cuadri84@miranda.ou5esvk.mongodb.net/")
+  .connect(
+    `mongodb+srv://cuadri84:${secretDbToken}@miranda.ou5esvk.mongodb.net/`
+  )
   .then(() => {
     console.log("Conectado a la base de datos de MongoDB");
   })
