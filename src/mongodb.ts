@@ -5,6 +5,7 @@ dotenv.config();
 
 //cambiar por este connect para trabajar en local en compass
 // .connect("mongodb://localhost/miranda")
+
 const secretDbToken = process.env.MONGO_PASS;
 export const mongodbconnection = mongoose
   .connect(
