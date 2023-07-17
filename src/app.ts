@@ -9,11 +9,13 @@ import dashboardRouter from "./routes/dashboardRouter";
 import infoRouter from "./routes/infoRouter";
 import roomsRouter from "./routes/roomsRouter";
 import usersRouter from "./routes/usersRouter";
+import cors from "cors";
 
 export const app: Express = express();
 
 // Middleware para analizar el cuerpo de la solicitud como JSON
 app.use(express.json());
+app.use(cors());
 
 //public routes
 app.use("/login", authRouter);
