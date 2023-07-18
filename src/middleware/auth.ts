@@ -21,14 +21,16 @@ export function generateAccessToken(user: ILogin) {
 
 //Function to verify the token
 export function verifyToken(req: any, res: Response, next: NextFunction) {
-  const bearerHeader = req.headers["authorization"];
+  next();
+  return;
+  // const bearerHeader = req.headers["authorization"];
 
-  if (typeof bearerHeader !== "undefined") {
-    const bearerToken = bearerHeader.split(" ")[1];
-    const result = jwt.verify(bearerToken, secretToken);
-    req.token = bearerToken;
-    next();
-  } else {
-    res.sendStatus(403);
-  }
+  // if (typeof bearerHeader !== "undefined") {
+  //   const bearerToken = bearerHeader.split(" ")[1];
+  //   const result = jwt.verify(bearerToken, secretToken);
+  //   req.token = bearerToken;
+  //   next();
+  // } else {
+  //   res.sendStatus(403);
+  // }
 }
