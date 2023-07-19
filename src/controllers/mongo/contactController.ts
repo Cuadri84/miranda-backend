@@ -39,3 +39,25 @@ export const postContacts = async function (req: Request, res: Response) {
     throw error;
   }
 };
+
+// Actualizar una reserva por su ID
+export const putContacts = async function (req: Request, res: Response) {
+  try {
+    await mongodbconnection;
+    const contactId = req.params.id;
+    const updatedContact = await ContactModel.findById(contactId);
+
+    if (!updatedContact) {
+      return res.status(404).json({ message: "Contacto no encontrado" });
+    }
+
+    updatedContact.archived = !updatedContact.archived;
+
+    await updatedContact.save();
+
+    res.status(200).json(updatedContact);
+  } catch (error) {
+    console.error("Error al actualizar el contacto:", error);
+    throw error;
+  }
+};
