@@ -107,7 +107,6 @@ export const deleteBooking = async function (req: Request, res: Response) {
 
     const bookingId = req.params.id;
 
-    // Buscar y eliminar la reserva
     const deletedBooking = await BookingModel.findByIdAndDelete(bookingId);
 
     if (!deletedBooking) {
@@ -116,7 +115,6 @@ export const deleteBooking = async function (req: Request, res: Response) {
 
     const roomNumber = deletedBooking.room_number;
 
-    // Eliminar el _id de la reserva del array bookings en la habitación correspondiente
     await RoomModel.updateOne(
       { room_number: roomNumber },
       { $pull: { bookings: deletedBooking._id } }

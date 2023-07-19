@@ -9,17 +9,19 @@ export interface IUser extends Document {
   date: Date;
   description: string;
   state: "ACTIVE" | "INACTIVE";
+  pass: string;
 }
 
 const UserSchema: Schema = new Schema({
-  photo: { type: String, required: true },
+  photo: { type: String },
   name: { type: String, required: true },
   position: { type: String, required: true },
   email: { type: String, required: true },
   phone: { type: String, required: true },
   date: { type: Date, required: true },
-  description: { type: String, required: true },
+  description: { type: String },
   state: { type: String, enum: ["ACTIVE", "INACTIVE"], required: true },
+  pass: { type: String },
 });
 
 const UserModel = mongoose.model<IUser>("User", UserSchema);

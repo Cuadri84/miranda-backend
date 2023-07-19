@@ -96,7 +96,7 @@ export const putUser = async function (req: Request, res: Response) {
 export const deleteUser = async function (req: Request, res: Response) {
   try {
     await mongodbconnection;
-    const userId = req.params.id; // ID del usuario obtenido desde la ruta
+    const userId = req.params.id;
     const deletedUser = await UserModel.findByIdAndDelete(userId);
 
     if (!deletedUser) {
