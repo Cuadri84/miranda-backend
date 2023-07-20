@@ -9,7 +9,7 @@ export interface IRoom extends Document {
   photoFour: string;
   photoFive: string;
   description: string;
-  discountPercent: string;
+  discountPercent: number;
   discount: string;
   cancellationPolicy: string;
   bed_type: string;
@@ -22,13 +22,13 @@ export interface IRoom extends Document {
 
 const RoomSchema: Schema = new Schema({
   room_number: { type: Number, required: true },
-  photo: { type: String, required: true },
+  photo: { type: String },
   photoTwo: { type: String },
   photoThree: { type: String },
   photoFour: { type: String },
   photoFive: { type: String },
   description: { type: String },
-  discountPercent: { type: String },
+  discountPercent: { type: Number },
   discount: { type: String },
   cancellationPolicy: { type: String },
   bed_type: {
@@ -47,7 +47,7 @@ const RoomSchema: Schema = new Schema({
       "Coffee set",
     ],
   },
-  room_rate: { type: Number, required: true },
+  room_rate: { type: Number },
   room_offer: { type: String },
   room_status: { type: String, required: true },
   bookings: { type: Schema.Types.ObjectId, ref: "Booking" },
