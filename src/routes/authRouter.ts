@@ -1,5 +1,5 @@
 import express from "express";
-import { postLogin, getLogin } from "../controllers/authController";
+import { postLogin, getLogin } from "../controllers/mongo/loginController";
 
 const authRouter = express.Router();
 

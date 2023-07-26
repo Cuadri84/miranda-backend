@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import RoomModel, { IRoom } from "../../models/mongoModels/roomModel";
+import RoomModel from "../../models/mongoModels/roomModel";
 import BookingModel, { IBooking } from "../../models/mongoModels/bookingModel";
 import { mongodbconnection } from "../../mongodb";
 
