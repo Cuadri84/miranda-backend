@@ -25,25 +25,22 @@ To get started with Miranda Backend, follow these steps:
 ```bash
 git clone <repository_url>
 Install the required dependencies:
-bash
+```bash
 Copy code
 npm install
 Create a .env file in the root directory with the following environment variables:
-env
-Copy code
+```bash
 TOKEN_SECRET='09f26e402586e2faa8da4c98a35f1b20d6b033c6097befa8be3486a829587fe2f90a832bd3ff9d42710a4da095a2ce285b009f0c3730cd9b8e1af3eb84df6611'
 DB_PASS="1984"
 MONGO_PASS="cuadri84"
 SALT="fhdashjdghjadgnjgsgsdmngnajtadgtaebthedbgfd"
 Start the server:
-bash
-Copy code
+```bash
 npm start
 Usage
 To interact with the API and access its functionalities, you can use tools like Postman. To make a POST request for the Login, include the following JSON object in the request body:
 
-json
-Copy code
+```bash
 {
   "name": "david",
   "mail": "mail",
