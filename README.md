@@ -23,31 +23,23 @@ The following technologies were used in building Miranda Backend:
 To get started with Miranda Backend, follow these steps:
 
 1. Clone the repository using Git:
-git clone <repository_url>
+```git clone <repository_url>```
 
-markdown
-Copy code
 
 2. Install the required dependencies:
-npm install
+```npm install```
 
-javascript
-Copy code
+
 
 3. Create a `.env` file in the root directory with the following environment variables:
-TOKEN_SECRET='09f26e402586e2faa8da4c98a35f1b20d6b033c6097befa8be3486a829587fe2f90a832bd3ff9d42710a4da095a2ce285b009f0c3730cd9b8e1af3eb84df6611'
-DB_PASS="1984"
-MONGO_PASS="cuadri84"
-SALT="fhdashjdghjadgnjgsgsdmngnajtadgtaebthedbgfd"
-
-markdown
-Copy code
+```TOKEN_SECRET='09f26e402586e2faa8da4c98a35f1b20d6b033c6097befa8be3486a829587fe2f90a832bd3ff9d42710a4da095a2ce285b009f0c3730cd9b8e1af3eb84df6611' ```
+```DB_PASS="1984"```
+```MONGO_PASS="cuadri84"```
+```SALT="fhdashjdghjadgnjgsgsdmngnajtadgtaebthedbgfd"```
 
 4. Start the server:
-npm start
+```npm start```
 
-css
-Copy code
 
 ## Usage
 
@@ -59,7 +51,6 @@ To interact with the API and access its functionalities, you can use tools like 
 "mail": "mail",
 "pass": "d"
 }
-Note: Please make sure to replace the placeholder values in the .env file with your actual sensitive data for a secure setup.
 
 Contact
 For any issues or inquiries, please send an email to davidcuadrillerosaura@gmail.com.
