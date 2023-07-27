@@ -52,5 +52,4 @@ To interact with the API and access its functionalities, you can use tools like 
 "pass": "d"
 }
 
-Contact
-For any issues or inquiries, please send an email to davidcuadrillerosaura@gmail.com.
+Contact: davidcuadrillerosaura@gmail.com
