@@ -27,7 +27,7 @@ To get started with Miranda Backend, follow these steps:
 
 
 2. Install the required dependencies:
-```npm install```
+```bash npm install```
 
 
 
