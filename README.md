@@ -1,8 +1,6 @@
-markdown
-Copy code
 # Miranda Backend
 
-Miranda Backend is the backend API for Hotel Miranda, a robust hotel management system that offers a wide range of functionalities to efficiently manage hotel operations. The API is built using Node.js with Express.js framework and MongoDB for data storage and retrieval.
+Miranda Backend is the backend API for Hotel Miranda, a robust hotel management system that offers a wide range of functionalities to efficiently manage hotel operations. The API is built using Node.js with Express.js framework and MongoDB Atlas for data storage and retrieval.
 
 ## Features
 
@@ -16,6 +14,7 @@ Miranda Backend is the backend API for Hotel Miranda, a robust hotel management 
 - Express.js
 - MongoDB Atlas
 - TypeScript
+- SQL
 
 ## Installation
 
